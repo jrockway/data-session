@@ -1,11 +1,15 @@
 package Data::Session;
-use strict;
-use warnings;
+use Moose;
+use MooseX::AttributeHelpers;
 
-=head1 NAME
-
-Data::Session - 
-
-=cut
+has 'data' => (
+    metaclass => 'Collection::Hash',
+    isa       => 'HashRef',
+    default   => sub { +{} },
+    provides  => {
+        get => 'get',
+        set => 'set',
+    },
+);
 
 1;
